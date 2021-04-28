@@ -1,6 +1,6 @@
 #!/bin/bash
 LOG_DIR=/home/pfring/log
-LOG_FILE=/home/pfring/log/update.log  #监测审计升级日志文件
+LOG_FILE=/home/pfring/log/update.log  #升级日志文件
 NIC_DIVERS=("e1000e" "igb" "ixgbevf" "ixgbe" "fm10k" "i40e")	#pfring7.8.0支持的网卡驱动类型
 ADMIN_NAME=eth0	#管理口名称
 UP_TMP=/home/XXX/release/tmp
