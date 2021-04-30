@@ -1,9 +1,9 @@
 #!/bin/bash
-LOG_DIR=/home/pfring/log
-LOG_FILE=/home/pfring/log/update.log  #升级日志文件
+LOG_DIR=/home/AA/log
+LOG_FILE=/home/AA/log/update.log 
 NIC_DIVERS=("e1000e" "igb" "ixgbevf" "ixgbe" "fm10k" "i40e")	#pfring7.8.0支持的网卡驱动类型
 ADMIN_NAME=eth0	#管理口名称
-UP_TMP=/home/XXX/release/tmp
+UP_TMP=/home/wdd/release/tmp
 PFRING_KERNEL_DIR=$UP_TMP/pf_ring/kernel
 PFRING_LIBPCAP_DIR=$UP_TMP/pf_ring/libpcap
 PFRING_DRIVERS_DIR=$UP_TMP/pf_ring/drivers
@@ -15,6 +15,10 @@ mkdir -p $UP_TMP
 echo "[`date +%Y-%m-%d' '%H:%M:%S`] <<<<<<<<<<<<<<<<<<<< start to install pfring >>>>>>>>>>>>>>>>>>>>" >> $LOG_FILE
 unzip -o pf_ring.zip
 cd ./pf_ring
+if [ ! -d $PFRING_KERNEL_DIR ] || [ ! -d $PFRING_LIBPCAP_DIR ] || [ ! -d $PFRING_DRIVERS_DIR ]; then
+	echo "check pfring installation failed...!" >> $LOG_FILE
+	exit 1
+fi
 #step3:检查pfring是否已安装
 cat /proc/net/pf_ring/info | grep 'PF_RING'
 if [ $? -eq 0 ] ;then
